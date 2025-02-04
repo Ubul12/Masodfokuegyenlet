@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Másodfokú Egyenlet Megoldása</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: linear-gradient(to right, #1a1a2e, #16213e, #0f3460);
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            color: #ffffff;
+        }
+        .container {
+            max-width: 900px;
+            background: #121212;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            margin: auto;
+        }
+        h1 {
+            color: #ff5733;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        h2 {
+            color: #33ff57;
+        }
+        p {
+            font-size: 18px;
+            color: #ffffff;
+        }
+        .formula {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            background: #ff8c00;
+            padding: 15px;
+            border-radius: 10px;
+            display: inline-block;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        }
+        pre {
+            text-align: left;
+            background: #222831;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 10px;
+            overflow-x: auto;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        }
+        a {
+            color: #17c3b2;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            .formula {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Másodfokú Egyenlet Megoldása</h1>
+        <p>A másodfokú egyenlet általános alakja:</p>
+        <p class="formula">ax² + bx + c = 0</p>
+        <p>A megoldóképlet:</p>
+        <p class="formula">x = (-b ± √(b² - 4ac)) / 2a</p>
+        <h2>Hol használjuk?</h2>
+        <p>A másodfokú egyenleteket a matematikában, fizikában, mérnöki tudományokban és gazdasági modellekben alkalmazzuk.</p>
+        <h2>Mire használjuk?</h2>
+        <p>Ezeket az egyenleteket mozgások, pályák, optimális értékek és egyéb természeti jelenségek kiszámítására használjuk.</p>
+        <h2>Mikor használjuk?</h2>
+        <p>Amikor olyan problémát oldunk meg, ahol egy mennyiség négyzetes kapcsolatban áll egy másik változóval.</p>
+        <h2>Hogyan használjuk?</h2>
+        <p>Behelyettesítjük az adott együtthatókat a megoldóképletbe, majd elvégezzük a számításokat a gyökök meghatározásához.</p>
+        <h2>Python kód a másodfokú egyenlet megoldására:</h2>
+        <pre>
+import tkinter as tk
+from tkinter import ttk, messagebox
+import math
+
+def solve_quadratic():
+    try:
+        a = float(entry_a.get())
+        b = float(entry_b.get())
+        c = float(entry_c.get())
+
+        if a == 0:
+            if b == 0:
+                result = "Ez nem egy érvényes egyenlet." if c != 0 else "Minden x megoldás."
+            else:
+                result = f"Ez egy elsőfokú egyenlet. Megoldás: x = {-c / b}"
+        else:
+            szam1 = b**2 - 4*a*c
+            if szam1 > 0:
+                x1 = (-b + math.sqrt(szam1)) / (2 * a)
+                x2 = (-b - math.sqrt(szam1)) / (2 * a)
+                result = f"Két valós gyök van:\nx1 = {x1}\nx2 = {x2}"
+            elif szam1 == 0:
+                x = -b / (2 * a)
+                result = f"Egyszeres gyök van: x = {x}"
+            else:
+                real_part = -b / (2 * a)
+                imaginary_part = math.sqrt(-szam1) / (2 * a)
+                x1 = complex(real_part, imaginary_part)
+                x2 = complex(real_part, -imaginary_part)
+                result = f"Két komplex gyök van:\nx1 = {x1}\nx2 = {x2}"
+        messagebox.showinfo("Eredmény", result)
+    except ValueError:
+        messagebox.showerror("Hiba", "Kérlek, adj meg érvényes számokat!")
+        </pre>
+        <p><a href="https://hu.wikipedia.org/wiki/M%C3%A1sodfok%C3%BA_egyenlet" target="_blank">További információ a másodfokú egyenletekről</a></p>
+    </div>
+</body>
+</html>
